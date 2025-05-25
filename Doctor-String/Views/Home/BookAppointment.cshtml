@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Doctor>
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors</title>
+    <style>
+        body {
+        font-family: 'Tahoma', sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 20px;
+        }
+
+        h1 {
+        text-align: center;
+        color: #2c3e50;
+        }
+
+        .doctors-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+        }
+
+        .doctor-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        width: 250px;
+        text-align: center;
+        padding: 15px;
+        transition: transform 0.3s;
+        }
+
+        .doctor-card:hover {
+        transform: scale(1.05);
+        }
+
+        .doctor-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        }
+
+        .doctor-info {
+        margin-top: 10px;
+        }
+
+        .doctor-info h3 {
+        margin: 10px 0 5px;
+        color: #34495e;
+        }
+
+        .doctor-info p {
+        margin: 5px 0;
+        color: #555;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Doctors List</h1>
+    <div class="doctors-container">
+        @foreach (var doctor in Model)
+        {
+            <div class="doctor-card">
+                <div class="card">
+                    <img src="~/doctorsImgs/@doctor.Img" class="card-img-top" alt="@doctor.Name">
+                    <div class="card-body">
+                        <h5 class="card-title">@doctor.Name</h5>
+                        <p class="card-text">@doctor.Specialization</p>
+                        <a href="/Doctors/Details/@doctor.Id" class="btn btn-primary">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+        }
+  </div>
+    
+</body>
+</html>

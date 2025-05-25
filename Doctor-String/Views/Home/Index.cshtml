@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Doctor>
+ 
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Sheffa Hospital</title>
+    <style>
+        body {
+          font-family: 'Tahoma', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f0f4f8;
+        }
+
+        header {
+          background-color: #2c3e50;
+          color: white;
+          padding: 20px;
+          text-align: center;
+        }
+
+        nav {
+          background-color: #34495e;
+          overflow: hidden;
+        }
+
+        nav a {
+          float: right;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        nav a:hover {
+          background-color: #1abc9c;
+          color: white;
+        }
+
+        section {
+          padding: 20px;
+        }
+
+        .doctors {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+
+        .doctor-card {
+          background-color: white;
+          padding: 15px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          width: 250px;
+          box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+          background-color: #2c3e50;
+          color: white;
+          text-align: center;
+          padding: 15px;
+          margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Al-Sheffa Hospital</h1>
+        <p>رعايتكم تهمنا</p>
+    </header>
+
+    <nav>
+        <a href="#contact">تواصل معنا</a>
+        <a href="#doctors">الأطباء</a>
+        <a href="#about">عن المستشفى</a>
+        <a href="#">الرئيسية</a>
+    </nav>
+
+    <section id="about">
+        <h2>عن المستشفى</h2>
+        <p>مستشفى الشفاء تقدم أفضل الخدمات الطبية بأحدث التقنيات وعلى يد نخبة من الأطباء المتميزين.</p>
+    </section>
+
+    <section id="doctors">
+        <h2>الاطباء</h2>
+            <div class="doctors">
+                <div class="card" style="width: 18rem;">
+                <img src="~/doctorsImgs/doctor1.jpg" class="card-img-top" alt="doctor1.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">حجز الطبيب</h5>
+                        <p class="card-text">مستشفي الشفاء احسن من مستشفي حلوان العام</p>
+                        <a href="/Home/BookAppointment" class="btn btn-primary">اضغط لحجز طبيب</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section id="contact">
+        <h2>تواصل معنا</h2>
+        <p>العنوان: شارع الصحة، القاهرة</p>
+        <p>الهاتف: 0123456789</p>
+        <p>البريد الإلكتروني: info@hospital.com</p>
+    </section>
+
+    <footer>
+        <p>© 2025 مستشفى الشفاء. جميع الحقوق محفوظة.</p>
+    </footer>
+
+</body>
+</html>
+
