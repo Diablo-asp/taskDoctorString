@@ -1,43 +1,107 @@
 ﻿@using Doctor_String.Models
 @model Doctor
 
+<style>
+    body {
+        font-family: 'Tahoma', sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    .doctors-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .doctor-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        width: 250px;
+        text-align: center;
+        padding: 15px;
+        transition: transform 0.3s;
+    }
+
+        .doctor-card:hover {
+            transform: scale(1.05);
+        }
+
+        .doctor-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+    .doctor-info {
+        margin-top: 10px;
+    }
+
+        .doctor-info h3 {
+            margin: 10px 0 5px;
+            color: #34495e;
+        }
+
+        .doctor-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+</style>
+
 <div class=" container">
     <div class="row">
 
-        <h3> Complete Enroll Doctor: @Model.Name</h3>
+        <h3> Complete Enroll: @Model.Name</h3>
         <div class="col-12">
+            <div class="doctor-card">
+                <img src="~/doctorsImgs/@Model.Img" class="card-img-top" alt="@Model.Name"></>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.Name</h5>
+                        <p class="card-text">@Model.Specialization</p>
+                    </div>
+                </div>
+            </div>
 
 
             <form action="complete" method="post">
                 <div class="mb-3">
 
-                    <input type="hidden" value="@Model.Id" name="DoctorId" class="form-control" id="DoctorId">
+                    <input type="hidden" value="@Model.Id" name="DoctorId" class="form-control"/>
 
                 </div>
 
                 <div class="mb-3">
                     <label for="Name" class="form-label">Name</label>
-                    <input type="text" name="DoctorForm.Name" class="form-control" id="Name">
+                    <input type="text" name="Name" class="form-control"/>
 
                 </div>
 
                 <div class="mb-3">
                     <label for="Age" class="form-label">Age</label>
-                    <input type="number" name="DoctorForm.Age" class="form-control" id="Age">
+                    <input type="number" name="Age" class="form-control"/>
 
                 </div>
 
                 <div class="mb-3">
                     <label for="Date" class="form-label">Date</label>
-                    <input type="datetime-local" name="DoctorForm.Date" class="form-control" id="Date">
+                    <input type="datetime-local" name="Date" class="form-control"/>
 
                 </div>
-
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-
-
-
         </div>
     </div>
 </div>
+

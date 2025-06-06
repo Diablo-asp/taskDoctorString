@@ -33,14 +33,14 @@ namespace Doctor_String.Controllers
             var doctor = _context.Doctors.FirstOrDefault(e => e.Id == Id);           
             return View(doctor);
         }
-        [HttpPost]
+        [HttpPost] 
         public IActionResult DoctorForm(DoctorForm FFD)
-        {            
-
+        {
                 _context.DoctorForms.Add(FFD);
-                _context.SaveChanges();        
-                return View("Index");
+                _context.SaveChanges();
+                return RedirectToAction("formDoneController", "FormDone");             
         }
+
 
 
 
