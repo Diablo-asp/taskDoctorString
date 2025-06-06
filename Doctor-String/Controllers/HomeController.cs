@@ -38,7 +38,12 @@ namespace Doctor_String.Controllers
         {
                 _context.DoctorForms.Add(FFD);
                 _context.SaveChanges();
-                return RedirectToAction("formDoneController", "FormDone");             
+                return RedirectToAction("FormDone");          
+        }
+
+        public IActionResult FormDone()
+        {
+            return View();
         }
 
 
