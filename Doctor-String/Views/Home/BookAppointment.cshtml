@@ -69,22 +69,24 @@
 </head>
 <body>
 
+    <div style="position: center; top: 0; width: 100%; background-color: #fff3cd; color: #856404; padding: 15px; text-align: center; border-bottom: 1px solid #ffeeba; font-family: Arial; font-size: 16px; z-index: 9999;">
+        <h3>📢Official working hours are from Sunday to Thursday</h3>
+    </div>
     <h1>Doctors List</h1>
     <div class="doctors-container">
         @foreach (var doctor in Model)
         {
             <div class="doctor-card">
+                <a href="~/home/DoctorForm/@doctor.Id"><img src="~/doctorsImgs/@doctor.Img" class="card-img-top" alt="@doctor.Name"></a>
                 <div class="card">
-                    <img src="~/doctorsImgs/@doctor.Img" class="card-img-top" alt="@doctor.Name">
                     <div class="card-body">
                         <h5 class="card-title">@doctor.Name</h5>
                         <p class="card-text">@doctor.Specialization</p>
-                        <a href="/Doctors/Details/@doctor.Id" class="btn btn-primary">عرض التفاصيل</a>
+                        <a href="~/home/DoctorForm" class="btn btn-primary">عرض التفاصيل</a>
                     </div>
                 </div>
             </div>
-        }
+        }        
   </div>
-    
 </body>
 </html>

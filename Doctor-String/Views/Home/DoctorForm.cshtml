@@ -1,0 +1,43 @@
+﻿@using Doctor_String.Models
+@model Doctor
+
+<div class=" container">
+    <div class="row">
+
+        <h3> Complete Enroll Doctor: @Model.Name</h3>
+        <div class="col-12">
+
+
+            <form action="complete" method="post">
+                <div class="mb-3">
+
+                    <input type="hidden" value="@Model.Id" name="DoctorId" class="form-control" id="DoctorId">
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" name="DoctorForm.Name" class="form-control" id="Name">
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="Age" class="form-label">Age</label>
+                    <input type="number" name="DoctorForm.Age" class="form-control" id="Age">
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="Date" class="form-label">Date</label>
+                    <input type="datetime-local" name="DoctorForm.Date" class="form-control" id="Date">
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>

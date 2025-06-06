@@ -1,7 +1,10 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Doctor_String.Data;
 using Doctor_String.Models;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Doctor_String.Controllers
 {    
@@ -24,6 +27,23 @@ namespace Doctor_String.Controllers
             var doctors = _context.Doctors;
             return View(doctors.ToList());
         }
+        [HttpGet]
+        public IActionResult DoctorForm(int Id)
+        {
+            var doctor = _context.Doctors.FirstOrDefault(e => e.Id == Id);           
+            return View(doctor);
+        }
+        [HttpPost]
+        public IActionResult DoctorForm(DoctorForm FFD)
+        {            
+
+                _context.DoctorForms.Add(FFD);
+                _context.SaveChanges();        
+                return View("Index");
+        }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
