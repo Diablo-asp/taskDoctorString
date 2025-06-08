@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using Doctor_String.Data;
 using Doctor_String.Models;
+using Doctor_String.ViewModels;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,9 +24,24 @@ namespace Doctor_String.Controllers
         {
             return View();
         }
-        public IActionResult BookAppointment()
+        public IActionResult BookAppointment(FillteringVM Fi)
         {
-            var doctors = _context.Doctors;
+            IQueryable<Doctor> doctors = _context.Doctors;
+            
+            // Fillter
+            if (Fi.Name is not null)
+            {
+                doctors = doctors.Where(e => e.Name.Contains(Fi.Name));                              
+            }
+            //if (Fi.Specialization is not null)
+            //{
+            //    doctors = doctors.Where(e => e.Specialization.Contains(Fi.Specialization));
+            //}
+            if(Fi.DoctorId > 0 & Fi.DoctorId <= doctors.Count())
+            {
+                doctors = doctors.Where(e=>e.Id ==  Fi.DoctorId);
+               
+            }
             return View(doctors.ToList());
         }
         [HttpGet]

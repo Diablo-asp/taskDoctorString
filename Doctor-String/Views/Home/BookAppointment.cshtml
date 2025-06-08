@@ -68,25 +68,77 @@
     </style>
 </head>
 <body>
+    <!-- Filter Section -->
+    <section class="py-3 filter-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="">
+                        <div class="row">
+                            <!-- Doctor Name -->
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Doctor Name" name="Name" >
+                            </div>
+                            <!-- Doctors -->                               
+                            <div  class="col-md-2">                                
+                                <select name="DoctorId" class="form-control">
+                                    <option>All Doctors</option>
+                                    @foreach(var item in Model)
+                                    {
+                                        <option value="@item.Id">@item.Specialization</option>
+                                    }
+                                </select>
+                            </div>
 
-    <div style="position: center; top: 0; width: 100%; background-color: #fff3cd; color: #856404; padding: 15px; text-align: center; border-bottom: 1px solid #ffeeba; font-family: Arial; font-size: 16px; z-index: 9999;">
-        <h3>📢Official working hours are from Sunday to Thursday</h3>
-    </div>
-    <h1>Doctors List</h1>
-    <div class="doctors-container">
-        @foreach (var doctor in Model)
-        {
-            <div class="doctor-card">
-                <a href="~/home/DoctorForm/@doctor.Id"><img src="~/doctorsImgs/@doctor.Img" class="card-img-top" alt="@doctor.Name"></a>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">@doctor.Name</h5>
-                        <p class="card-text">@doctor.Specialization</p>
-                        <a href="~/home/DoctorForm" class="btn btn-primary">عرض التفاصيل</a>
-                    </div>
+                            <!-- Rating -->
+                            @* <div class="col-md-2"> *@
+                            @*     <select name="rating" class="form-control"> *@
+                            @*         <option value="">Any Rating</option> *@
+                            @*         <option>option 1</option> *@
+                            @*         <option>option 2</option> *@
+                            @*         <option>option 3</option> *@
+                            @*     </select> *@
+                            @* </div> *@
+
+                            <!-- Submit Button -->
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-dark w-100">Filter</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        }        
-  </div>
+        </div>
+    </section>
+    @if (Model.Count() == 0)
+    {
+        <div class="row m-5">
+            <class class="col-12">
+                <div class="display-5 d-flex justify-content-center align-content-center">No Doctors</div>
+            </class>
+        </div>
+    }
+    else
+    {
+        <div style="position: center; top: 0; width: 100%; background-color: #fff3cd; color: #856404; padding: 15px; text-align: center; border-bottom: 1px solid #ffeeba; font-family: Arial; font-size: 16px; z-index: 9999;">
+            <h3>📢Official working hours are from Sunday to Thursday</h3>
+        </div>
+        <h1>Doctors List</h1>
+        <div class="doctors-container">
+            @foreach (var doctor in Model)
+            {
+                <div class="doctor-card">
+                    <a href="~/home/DoctorForm/@doctor.Id"><img src="~/doctorsImgs/@doctor.Img" class="card-img-top" alt="@doctor.Name"></a>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@doctor.Name</h5>
+                            <p class="card-text">@doctor.Specialization</p>
+                            <a href="~/home/DoctorForm" class="btn btn-primary">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }    
 </body>
 </html>
