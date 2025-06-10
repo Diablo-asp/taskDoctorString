@@ -77,18 +77,39 @@
                         <div class="row">
                             <!-- Doctor Name -->
                             <div class="col-md-3">
-                                <input type="text" class="form-control" placeholder="Doctor Name" name="Name" >
+                                <input type="text" class="form-control" placeholder="Doctor Name" name="Name" value="@ViewData["Name"]">
                             </div>
-                            <!-- Doctors -->                               
-                            <div  class="col-md-2">                                
-                                <select name="DoctorId" class="form-control">
-                                    <option>All Doctors</option>
-                                    @foreach(var item in Model)
-                                    {
-                                        <option value="@item.Id">@item.Specialization</option>
-                                    }
-                                </select>
+                            <!-- Doctor Specialization -->
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Doctor Specialization" name="Specialization" value="@ViewData["Specialization"]">
                             </div>
+                            <!-- Doctors Specialization list -->
+                            @* <div class="col-md-2"> *@
+                            @*     <select name="DoctorId" class="form-control"> *@
+                            @*         <option>All Doctors</option> *@
+                            @*         @if (ViewData["Specialization"] is List<Doctor> doctors) *@
+                            @*         { *@
+                            @*             @foreach (var item in doctors) *@
+                            @*             { *@
+                            @*                 if (ViewData["DoctorId"] is int DoctorId) *@
+                            @*                 { *@
+                            @*                     if (DoctorId == item.Id) *@
+                            @*                     { *@
+                            @*                         <option value="@item.Id" selected>@item.Specialization</option> *@
+                            @*                     } *@
+                            @*                     else *@
+                            @*                     { *@
+                            @*                         <option value="@item.Id">@item.Specialization</option> *@
+                            @*                     } *@
+                            @*                 } *@
+                            @*                 else *@
+                            @*                 { *@
+                            @*                     <option value="@item.Id">@item.Specialization</option> *@
+                            @*                 } *@
+                            @*             } *@
+                            @*         } *@
+                            @*     </select> *@
+                            @* </div> *@
 
                             <!-- Rating -->
                             @* <div class="col-md-2"> *@
@@ -133,12 +154,38 @@
                         <div class="card-body">
                             <h5 class="card-title">@doctor.Name</h5>
                             <p class="card-text">@doctor.Specialization</p>
+                            <p class="card-text">Working time form @doctor.StartWork to @doctor.EndWork</p>
+
                             <a href="~/home/DoctorForm" class="btn btn-primary">عرض التفاصيل</a>
                         </div>
                     </div>
                 </div>
             }
         </div>
+        <section>
+            <div class="row my-3">
+                <div class="col-12 d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            @if (!(ViewBag.currentPage == 1))
+                            {
+                                <li class="page-item"><a class="page-link" href="/home/BookAppointment/?page=@(ViewBag.currentPage - 1)">Previous</a></li>
+                            }
+                            @for (int i = 1; i <= ViewBag.TotalNumberOfPages; i++)
+                            {
+                                <li class="page-item"><a class="page-link" href="/home/BookAppointment/?page=@i">@i</a></li>
+                            }
+                            @if (!(ViewBag.TotalNumberOfPages == ViewBag.currentPage))
+                            {
+                                <li class="page-item"><a class="page-link" href="/home/BookAppointment/?page=@(ViewBag.currentPage + 1)">Next</a></li>
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        
     }    
 </body>
 </html>

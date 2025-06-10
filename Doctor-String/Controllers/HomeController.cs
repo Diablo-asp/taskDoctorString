@@ -24,24 +24,41 @@ namespace Doctor_String.Controllers
         {
             return View();
         }
-        public IActionResult BookAppointment(FillteringVM Fi)
+        public IActionResult BookAppointment(FillteringVM Fi, int page =1)
         {
             IQueryable<Doctor> doctors = _context.Doctors;
-            
+            const double totalNumberOfDoctorsPages = 8.0;
+
             // Fillter
             if (Fi.Name is not null)
             {
-                doctors = doctors.Where(e => e.Name.Contains(Fi.Name));                              
+                doctors = doctors.Where(e => e.Name.Contains(Fi.Name)); 
+                ViewData["Name"] = Fi.Name; 
             }
-            //if (Fi.Specialization is not null)
-            //{
-            //    doctors = doctors.Where(e => e.Specialization.Contains(Fi.Specialization));
-            //}
-            if(Fi.DoctorId > 0 & Fi.DoctorId <= doctors.Count())
+            if (Fi.Specialization is not null)
             {
-                doctors = doctors.Where(e=>e.Id ==  Fi.DoctorId);
-               
+                doctors = doctors.Where(e => e.Specialization.Contains(Fi.Specialization));
+                ViewData["Specialization"] = Fi.Specialization;
             }
+            //if(Fi.DoctorId > 0 && Fi.DoctorId <= doctors.Count())
+            //{
+            //    doctors = doctors.Where(e=>e.Specialization == Fi.Specialization);
+            //    ViewData["DoctorID"] = Fi.DoctorId;
+
+            //}
+
+            //pageination
+            var totalNumberOfPages = Math.Ceiling(doctors.Count() / totalNumberOfDoctorsPages);
+
+            if (totalNumberOfPages < page)
+                return NotFound();
+
+            doctors = doctors.Skip((page - 1) * (int)totalNumberOfDoctorsPages).Take((int)totalNumberOfDoctorsPages);
+
+            ViewBag.TotalNumberOfPages = totalNumberOfPages;
+            ViewBag.currentPage = page;
+
+
             return View(doctors.ToList());
         }
         [HttpGet]
@@ -50,12 +67,46 @@ namespace Doctor_String.Controllers
             var doctor = _context.Doctors.FirstOrDefault(e => e.Id == Id);           
             return View(doctor);
         }
-        [HttpPost] 
+        [HttpPost]
         public IActionResult DoctorForm(DoctorForm FFD)
         {
-                _context.DoctorForms.Add(FFD);
-                _context.SaveChanges();
-                return RedirectToAction("FormDone");          
+            var doctor = _context.Doctors.FirstOrDefault(d => d.Id == FFD.DoctorId);
+            if (doctor == null)
+                return NotFound();
+
+            var appointments = _context.DoctorForms
+                .Where(f => f.DoctorId == FFD.DoctorId && f.DayAppointment == FFD.DayAppointment)
+                .OrderBy(f => f.TimeAppoint)
+                .ToList();
+
+            TimeOnly nextTime = doctor.StartWork;
+            bool found = false;
+
+            while (nextTime <= doctor.EndWork)
+            {
+                if (!appointments.Any(a => a.TimeAppoint == nextTime))
+                {
+                    found = true;
+                    break;
+                }
+
+                nextTime = nextTime.AddMinutes(15);
+            }
+
+            if (!found)
+            {
+                ModelState.AddModelError(string.Empty, "لا يوجد مواعيد متاحة في هذا اليوم.");
+                return View(doctor);
+            }
+
+            FFD.TimeAppoint = nextTime;
+
+            _context.DoctorForms.Add(FFD);
+            _context.SaveChanges();
+
+            
+
+            return RedirectToAction("FormDone");
         }
 
         public IActionResult FormDone()

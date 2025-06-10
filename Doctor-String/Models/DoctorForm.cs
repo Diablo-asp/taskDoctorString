@@ -8,7 +8,9 @@ namespace Doctor_String.Models
         [Column(TypeName = "varchar(50)")]
         public string Name { get; set; } = string.Empty;
         public int Age { get; set; }
-        public DateTime Date { get; set; }
+        public string DayAppointment { get; set; } = null!;
+        public TimeOnly TimeAppoint { get; set; }
+
 
         public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }

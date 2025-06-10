@@ -4,6 +4,7 @@ using Doctor_String.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Doctor_String.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250610153204_updateDoctorAndDocotrForm")]
+    partial class updateDoctorAndDocotrForm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,6 @@ namespace Doctor_String.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<TimeOnly>("EndWork")
-                        .HasColumnType("time");
-
                     b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
@@ -44,247 +44,192 @@ namespace Doctor_String.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.Property<TimeOnly>("StartWork")
-                        .HasColumnType("time");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Doctors", (string)null);
+                    b.ToTable("Doctors");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor1.jpg",
                             Name = "Dr. John Smith",
-                            Specialization = "Cardiology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Cardiology"
                         },
                         new
                         {
                             Id = 2,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor2.jpg",
                             Name = "Dr. Sarah Johnson",
-                            Specialization = "Pediatrics",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Pediatrics"
                         },
                         new
                         {
                             Id = 3,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor4.jpg",
                             Name = "Dr. Emily Davis",
-                            Specialization = "Dermatology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Dermatology"
                         },
                         new
                         {
                             Id = 4,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor3.jpg",
                             Name = "Dr. Michael Lee",
-                            Specialization = "Orthopedics",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Orthopedics"
                         },
                         new
                         {
                             Id = 5,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor5.jpg",
                             Name = "Dr. William Clark",
-                            Specialization = "Neurology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Neurology"
                         },
                         new
                         {
                             Id = 6,
-                            EndWork = new TimeOnly(1, 0, 0),
                             Img = "doctor6.jpg",
                             Name = "Dr. Hasnna ahmed",
-                            Specialization = "Neurology",
-                            StartWork = new TimeOnly(19, 0, 0)
+                            Specialization = "Hurt"
                         },
                         new
                         {
                             Id = 7,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor7.jpg",
                             Name = "Alix Ingry",
-                            Specialization = "Urology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Urology"
                         },
                         new
                         {
                             Id = 8,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor8.jpg",
                             Name = "Wally Hake",
-                            Specialization = "Dermatology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Dermatology"
                         },
                         new
                         {
                             Id = 9,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor9.jpg",
                             Name = "Jock Readwood",
-                            Specialization = "Gastroenterology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Gastroenterology"
                         },
                         new
                         {
                             Id = 10,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor10.jpg",
                             Name = "Abby Abbitt",
-                            Specialization = "Cardiology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Cardiology"
                         },
                         new
                         {
                             Id = 11,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor11.jpg",
                             Name = "Leroy Orbell",
-                            Specialization = "Oncology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Oncology"
                         },
                         new
                         {
                             Id = 12,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor12.jpg",
                             Name = "Darrick Hall",
-                            Specialization = "Endocrinology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Endocrinology"
                         },
                         new
                         {
                             Id = 13,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor13.jpg",
                             Name = "Lilyan McKechnie",
-                            Specialization = "Urology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Urology"
                         },
                         new
                         {
                             Id = 14,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor14.jpg",
                             Name = "Flem Bolzen",
-                            Specialization = "Neurology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Neurology"
                         },
                         new
                         {
                             Id = 15,
-                            EndWork = new TimeOnly(1, 0, 0),
                             Img = "doctor15.jpg",
                             Name = "Ginnifer Grinter",
-                            Specialization = "Neurology",
-                            StartWork = new TimeOnly(19, 0, 0)
+                            Specialization = "Neurology"
                         },
                         new
                         {
                             Id = 16,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor16.jpg",
                             Name = "Jarrod Killshaw",
-                            Specialization = "Pediatrics",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Pediatrics"
                         },
                         new
                         {
                             Id = 17,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor17.jpg",
                             Name = "Florri Newport",
-                            Specialization = "Endocrinology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Endocrinology"
                         },
                         new
                         {
                             Id = 18,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor18.jpg",
                             Name = "Cornie Horbart",
-                            Specialization = "Orthopedics",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Orthopedics"
                         },
                         new
                         {
                             Id = 19,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor19.jpg",
                             Name = "Lucila Villa",
-                            Specialization = "Dermatology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Dermatology"
                         },
                         new
                         {
                             Id = 20,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor20.jpg",
                             Name = "Michaeline Van der Brug",
-                            Specialization = "Urology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Urology"
                         },
                         new
                         {
                             Id = 21,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor21.jpg",
                             Name = "Pinchas Probets",
-                            Specialization = "Psychiatry",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Psychiatry"
                         },
                         new
                         {
                             Id = 22,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor22.jpg",
                             Name = "Bengt Hassey",
-                            Specialization = "Endocrinology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Endocrinology"
                         },
                         new
                         {
                             Id = 23,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor23.jpg",
                             Name = "Alikee Puvia",
-                            Specialization = "Urology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Urology"
                         },
                         new
                         {
                             Id = 24,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor24.jpg",
                             Name = "Chelsey Hundell",
-                            Specialization = "Cardiology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Cardiology"
                         },
                         new
                         {
                             Id = 25,
-                            EndWork = new TimeOnly(1, 0, 0),
                             Img = "doctor25.jpg",
                             Name = "Cate Bloxam",
-                            Specialization = "Cardiology",
-                            StartWork = new TimeOnly(19, 0, 0)
+                            Specialization = "Cardiology"
                         },
                         new
                         {
                             Id = 26,
-                            EndWork = new TimeOnly(18, 0, 0),
                             Img = "doctor26.jpg",
                             Name = "Rochester Oliver-Paull",
-                            Specialization = "Gastroenterology",
-                            StartWork = new TimeOnly(10, 0, 0)
+                            Specialization = "Gastroenterology"
                         });
                 });
 
@@ -317,7 +262,7 @@ namespace Doctor_String.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("DoctorForms", (string)null);
+                    b.ToTable("DoctorForms");
                 });
 
             modelBuilder.Entity("Doctor_String.Models.DoctorForm", b =>
