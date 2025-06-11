@@ -61,8 +61,7 @@ namespace Doctor_String.Controllers
 
             return View(doctors.ToList());
         }
-        [HttpGet]
-        public IActionResult DoctorForm(int Id)
+        [HttpGet]        public IActionResult DoctorForm(int Id)
         {
             var doctor = _context.Doctors.FirstOrDefault(e => e.Id == Id);           
             return View(doctor);
@@ -92,19 +91,15 @@ namespace Doctor_String.Controllers
 
                 nextTime = nextTime.AddMinutes(15);
             }
-
             if (!found)
             {
                 ModelState.AddModelError(string.Empty, "لا يوجد مواعيد متاحة في هذا اليوم.");
                 return View(doctor);
             }
 
-            FFD.TimeAppoint = nextTime;
 
             _context.DoctorForms.Add(FFD);
             _context.SaveChanges();
-
-            
 
             return RedirectToAction("FormDone");
         }
